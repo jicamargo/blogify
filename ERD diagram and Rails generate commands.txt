@@ -1,0 +1,61 @@
+the ERD diagram is like this: 
+
+User: 
+Name
+Photo
+Bio
+UpdatedAt
+CreatedAt
+PostsCounter
+
+Post:
+AuthorId
+Title
+Text
+UpdatedAt
+CreatedAt
+CommentsCounter
+LikesCounter
+
+Like:
+AuthorId
+PostId
+UpdatedAt
+CreatedAt
+
+Comment:
+AuthorId
+PostId
+Text
+UpdatedAt
+CreatedAt
+
+Those are the relations:
+
+User -* Comment
+User -* Post
+User -* Like
+Post -* Comment
+Post -* Like
+
+
+##################### steps to create data model ####################
+
+rails generate model User name:string photo:string bio:text posts_counter:integer
+
+rails generate model Post title:string text:text author:references comments_counter:integer likes_counter:integer
+
+rails generate model Like author:references post:references
+
+rails generate model Comment author:references post:references text:text
+
+
+
+############### create models #######################
+
+rails generate model User name:string photo:string bio:text posts_counter:integer
+rails generate model Post author_id:bigint title:string text:text comments_counter:integer likes_counter:integer
+rails generate model Comment author_id:bigint post_id:bigint text:text
+rails generate model Like author_id:bigint post_id:bigint
+
+
