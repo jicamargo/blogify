@@ -1,3 +1,9 @@
 class UsersController < ApplicationController
-  def show; end
+  def index
+    # index logic comming here
+  end
+
+  def show
+    # show logic comming here
+  end
 end
