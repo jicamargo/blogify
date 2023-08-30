@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "PostsControllers", type: :request do
+RSpec.describe 'PostsControllers', type: :request do
   describe 'GET #index' do
     it 'returns a successful response' do
       get user_posts_path(user_id: 1)
