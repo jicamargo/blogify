@@ -14,7 +14,7 @@ RSpec.describe 'UsersControllers', type: :request do
 
     it 'renders the correct placeholder in the response body' do
       get users_path
-      expect(response.body).to include('This is the list of Users')
+      expect(response.body).to include('List of Users')
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'UsersControllers', type: :request do
 
     it 'renders the correct placeholder in the response body' do
       get user_path(id: 1)
-      expect(response.body).to include('This is the User profile')
+      expect(response.body).to include('User profile')
     end
   end
 end

@@ -4,7 +4,17 @@
     <title>List of Users</title>
   </head>
   <body>
-    <h1>This is the list of Users page</h1>
-    <p>parameters: <%= params %></p>
-</body>
+    <ul class="user-list">
+      <% @users.each do |user| %>
+        <li class="user-item">
+          <img src="<%= user.photo %>" alt="User Photo" class="user-photo">
+          <div class="user-info">
+            <h2><%= user.name %></h2>
+            <p>Number of Posts: <%= user.posts_counter %></p>
+          </div>
+          <a class= 'link-see-user-profile link-btn' href="<%= user_path(user) %>">See User Profile</a>
+        </li>
+      <% end %>
+    </ul>
+  </body>
 </html>

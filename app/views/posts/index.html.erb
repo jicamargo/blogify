@@ -3,9 +3,41 @@
 <head>
   <title>User Posts</title>
 </head>
-<body>
-  <h1>User Posts page</h1>
-  <p>This is a list of posts for user ID xxx.</p>
-  <p>Parameters: <%= params %></p>
-</body>
+  <body>
+    <div class="user-details">
+      <div class="user-header">
+        <img src="<%= @user.photo %>" alt="User Photo" class="user-photo">
+        <div class="user-info">
+          <div class="user-box">
+            <h2><%= @user.name %></h2>
+            <p>Number of Posts: <%= @user.posts_counter %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="user-posts">
+      <% @posts.each do |post| %>
+        <div class="post-box">
+          <h3><%= post.title %></h3>
+          <p><%= post.text %></p>
+          <div class='comments-likes-count'>
+            <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
+            <a class= 'link-post-details link-btn' href="<%= user_post_path(@user, post) %>">See all comments</a>
+          </div>
+          <div class='comments-box'>
+            <h4 class='comments-list-title'>Recent Comments</h4>  
+            <ul class="comments-list">
+              <% post.recent_comments.each do |comment| %>
+                <li class="comment-item">
+                  <div class="comment-info">
+                    <p><span class='comment-author-name'><%= comment.author.name %></span>: <%= comment.text %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>    
+  </body>
 </html>
