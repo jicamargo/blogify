@@ -1,0 +1,173 @@
+/* define variables */
+:root {
+  --primary-color: #007bff;
+  --primary-color-light: #4dabf5;
+  --primary-gray-color: #6c757d;
+  --bg-primary-color: #f1f3f6;
+  --bg-primary-color-light: #f8f9fa;
+  --bg-primary-color-dark: #343a40;
+}
+
+/* define font family */
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Define styles for the user list */
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* Define styles for each user item */
+.user-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin: 5px 1px;
+  padding: 5px;
+}
+
+/* Define styles for user photo */
+.user-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Define styles for user info */
+.user-info {
+  flex: 1;
+  padding: 5px 10px;
+  text-decoration: none;
+
+  /* color: var(--primary-color); */
+}
+
+/* Define styles for user name */
+.user-name {
+  margin: 0;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* Define styles for number of posts */
+.user-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.link-btn {
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--bg-primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.link-btn:hover {
+  background-color: var(--bg-primary-color-dark);
+  color: white;
+}
+
+/* ############################### styles for show.html.erb ############################ */
+
+/* Define styles for each user item */
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+
+  /* align-items: center; */
+}
+
+.user-header {
+  display: flex;
+  margin: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-bio {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.user-bio h2 {
+  margin: 5px;
+  font-size: 1.3rem;
+}
+
+.user-bio p {
+  margin: 5px;
+  font-size: 0.9rem;
+}
+
+.user-posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post-box {
+  margin: 5px;
+  padding: 5px;
+  padding-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.comments-likes-count {
+  display: flex;
+  justify-content: end;
+  margin: 5px;
+  gap: 10px;
+}
+
+.link-post-details {
+  padding: 0.5rem 1rem;
+  margin-bottom: 5px;
+}
+
+.link-see-all-posts {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.comments-box {
+  margin: 5px;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-list-title,
+.post-list-title {
+  text-align: center;
+  margin: 5px;
+  font-size: 1.3rem;
+  color: var(--primary-gray-color);
+}
+
+.comment-author-name {
+  font-weight: bold;
+}

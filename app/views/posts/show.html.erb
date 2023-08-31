@@ -3,9 +3,25 @@
 <head>
   <title>Post Details</title>
 </head>
-<body>
-  <h1>Post Details page</h1>
-  <p>This is the details page for post ID xxx belonging to user ID yyy.</p>
-  <p>parameters: <%= params %></p>
-</body>
+  <body>
+    <div class="post-box">
+      <h3><%= @post.title %>  by <%= @post.author.name %> </h3>
+      <div class='comments-likes-count'>
+        <p>Comments: <%= @post.comments_counter %>  |  Likes: <%= @post.likes_counter %></p>
+      </div>
+      <p><%= @post.text %></p>
+      <div class='comments-box'>
+        <h4 class='comments-list-title'>Comments</h4>  
+        <ul class="comments-list">
+          <% @post.comments.each do |comment| %>
+            <li class="comment-item">
+              <div class="comment-info">
+                <p><span class='comment-author-name'><%= comment.author.name %></span>: <%= comment.text %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
