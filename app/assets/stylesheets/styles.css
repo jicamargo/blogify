@@ -1,6 +1,8 @@
 /* define variables */
 :root {
   --primary-color: #007bff;
+  --primary-color-light: #4dabf5;
+  --primary-gray-color: #6c757d;
   --bg-primary-color: #f1f3f6;
   --bg-primary-color-light: #f8f9fa;
   --bg-primary-color-dark: #343a40;
@@ -73,6 +75,7 @@ body {
   color: white;
 }
 
+
 /* ############################### styles for show.html.erb ############################ */
 
 /* Define styles for each user item */
@@ -131,6 +134,12 @@ body {
   margin-bottom: 5px;
 }
 
+.link-see-all-posts {
+  width: 200px;
+  margin: 0 auto;
+}
+
+
 .comments-box {
   margin: 5px;
   padding: 5px;
@@ -146,6 +155,7 @@ body {
   text-align: center;
   margin: 5px;
   font-size: 1.3rem;
+  color: var(--primary-gray-color);
 }
 
 .comment-author-name {
