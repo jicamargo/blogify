@@ -22,6 +22,8 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    #examine the post object
+    puts ">>>>>>>>>>>>>>this is the post: #{@post}"
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else

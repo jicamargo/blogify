@@ -49,6 +49,7 @@ body {
   flex: 1;
   padding: 5px 10px;
   text-decoration: none;
+
   /* color: var(--primary-color); */
 }
 
@@ -59,7 +60,6 @@ body {
   text-decoration: none;
   color: var(--primary-color);
 }
-
 
 /* Define styles for number of posts */
 .user-info p {
