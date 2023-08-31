@@ -80,13 +80,14 @@ body {
 
 /* Define styles for each user item */
 
-.user-details{
+.user-details {
   display: flex;
   flex-direction: column;
+
   /* align-items: center; */
 }
 
-.user-header{
+.user-header {
   display: flex;
   margin: 5px;
   align-items: center;
@@ -139,7 +140,6 @@ body {
   margin: 0 auto;
 }
 
-
 .comments-box {
   margin: 5px;
   padding: 5px;
@@ -151,7 +151,8 @@ body {
   padding: 0;
 }
 
-.comments-list-title, .post-list-title{
+.comments-list-title,
+.post-list-title {
   text-align: center;
   margin: 5px;
   font-size: 1.3rem;
