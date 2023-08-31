@@ -20,6 +20,11 @@ body {
   padding: 0;
 }
 
+.user-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
 /* Define styles for each user item */
 .user-item {
   display: flex;
@@ -43,13 +48,18 @@ body {
 .user-info {
   flex: 1;
   padding: 5px 10px;
+  text-decoration: none;
+  /* color: var(--primary-color); */
 }
 
 /* Define styles for user name */
-.user-info h2 {
+.user-name {
   margin: 0;
   font-size: 1.3rem;
+  text-decoration: none;
+  color: var(--primary-color);
 }
+
 
 /* Define styles for number of posts */
 .user-info p {

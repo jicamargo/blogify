@@ -9,10 +9,9 @@
         <li class="user-item">
           <img src="<%= user.photo %>" alt="User Photo" class="user-photo">
           <div class="user-info">
-            <h2><%= user.name %></h2>
-            <p>Number of Posts: <%= user.posts_counter %></p>
+            <a class="user-name" href="<%= user_path(user) %>"><%= user.name %></a>
+            <p class="user-posts">Number of Posts: <%= user.posts_counter %></p>
           </div>
-          <a class= 'link-see-user-profile link-btn' href="<%= user_path(user) %>">See User Profile</a>
         </li>
       <% end %>
     </ul>
