@@ -21,5 +21,4 @@ class User < ApplicationRecord
   def set_default_photo
     self.photo ||= "https://randomuser.me/api/portraits/men/#{rand(1..100)}.jpg"
   end
-
 end
