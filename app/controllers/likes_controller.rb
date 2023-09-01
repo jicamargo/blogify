@@ -11,9 +11,6 @@ class LikesController < ApplicationController
 
     return unless @like.save
 
-    # flash.notice = 'You liked this post.'
     redirect_to user_post_path(@post.author, @post)
-    # else
-    # flash.alert = 'Failed to like the post.'
   end
 end

@@ -18,7 +18,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # @user = User.find_by(id: params[:user_id])
     @user = current_user
     @post = @user.posts.build(post_params)
     @post.set_counters_to_zero
