@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: :author_id
   has_many :comments, foreign_key: :author_id
   has_many :likes, foreign_key: :author_id
+  before_create :set_default_photo
 
   # custom method to return the three most recent posts of this user
   def recent_posts(limit = 3)
@@ -15,4 +16,10 @@ class User < ApplicationRecord
   def update_posts_counter
     update(posts_counter: posts.count)
   end
+
+  # this method is called when a user is created to set a default photo
+  def set_default_photo
+    self.photo ||= "https://randomuser.me/api/portraits/men/#{rand(1..100)}.jpg"
+  end
+
 end

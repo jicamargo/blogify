@@ -8,6 +8,27 @@
   --bg-primary-color-dark: #343a40;
 }
 
+/* styles for alert messages with flash */
+.alert {
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-notice {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+}
+
+.alert-alert {
+  background-color: #f44336; /* Red background */
+  color: white;
+}
+
+/*  *********** end of styles for alert messages with flash ************  */ 
+
 /* define font family */
 body {
   font-family: 'Roboto', sans-serif;
@@ -49,25 +70,29 @@ body {
   flex: 1;
   padding: 5px 10px;
   text-decoration: none;
-
-  /* color: var(--primary-color); */
 }
 
 /* Define styles for user name */
 .user-name {
   margin: 0;
   font-size: 1.3rem;
-  text-decoration: none;
-  color: var(--primary-color);
+  font-weight: bolder;
 }
 
-/* Define styles for number of posts */
-.user-info p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  text-align: right;
+/* general style for labels that are links */
+.label-link {
+  text-decoration: underline;
+  font-weight: bold;
+  color: var(--bg-primary-color-dark);
+  transition: all 0.2s ease-in-out;
 }
 
+.label-link:hover {
+  color: black;
+  text-shadow: 0 0 2px var(--primary-color-light);
+}
+
+/* general style for buttons that are links */
 .link-btn {
   text-decoration: none;
   text-align: center;
@@ -77,12 +102,20 @@ body {
   margin-top: 5px;
   border-radius: 5px;
   font-size: 0.9rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .link-btn:hover {
   background-color: var(--bg-primary-color-dark);
+  font-weight: bold;
   color: white;
+}
+  
+/* Define styles for number of posts */
+.user-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  text-align: right;
 }
 
 /* ############################### styles for show.html.erb ############################ */
@@ -92,8 +125,6 @@ body {
 .user-details {
   display: flex;
   flex-direction: column;
-
-  /* align-items: center; */
 }
 
 .user-header {
@@ -119,6 +150,21 @@ body {
   font-size: 0.9rem;
 }
 
+.post-list-header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments-list-header {
+  display: flex;
+  padding: 5px;
+  gap: 10px;
+  justify-content:end;
+  align-items: center;
+}
+
 .user-posts {
   display: flex;
   flex-direction: column;
@@ -132,8 +178,14 @@ body {
   border: 1px solid #ccc;
 }
 
+.post-title {
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
 .comments-likes-count {
   display: flex;
+  align-items: center;
   justify-content: end;
   margin: 5px;
   gap: 10px;
@@ -145,7 +197,8 @@ body {
 }
 
 .link-see-all-posts {
-  width: 200px;
+  text-align: center;
+  width: 170px;
   margin: 0 auto;
 }
 
@@ -153,6 +206,13 @@ body {
   margin: 5px;
   padding: 5px;
   border-top: 1px solid #ccc;
+}
+
+.recent-comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
 }
 
 .comments-list {
