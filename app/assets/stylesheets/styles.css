@@ -20,7 +20,7 @@
 }
 
 .alert-notice {
-  background-color: var(--bg-green-color); 
+  background-color: var(--bg-green-color);
   color: var(--bg-primary-color-light);
 }
 
