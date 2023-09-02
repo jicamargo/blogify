@@ -1,0 +1,47 @@
+/* Center the form on the page */
+form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Style the form title */
+.new-post-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style form fields and labels */
+.field {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+/* Style text input and textarea */
+.form-control {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style the submit button */
+.btn-primary {
+  background-color: #007bff;
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

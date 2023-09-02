@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <!-- notifications bar -->
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
+    
+    <!-- Main content -->
     <%= yield %>
   </body>
 </html>

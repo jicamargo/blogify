@@ -11,4 +11,9 @@ class Post < ApplicationRecord
   def recent_comments(limit = 5)
     comments.order(created_at: :desc).limit(limit)
   end
+
+  def set_counters_to_zero
+    self.comments_counter = 0
+    self.likes_counter = 0
+  end
 end
