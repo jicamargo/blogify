@@ -1,16 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts.order(created_at: :desc)
+    @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
-    @user = User.find_by(id: params[:user_id])
-    # update the comments counter for each post
-    @post.comments.each(&:update_comments_counter)
-    # update the likes counter for each post
-    @post.likes.each(&:update_likes_counter)
+    @post = Post.includes([{ comments: :author }, :comments]).find_by(id: params[:id])
   end
 
   def new

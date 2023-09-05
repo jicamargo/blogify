@@ -234,3 +234,10 @@ body {
 .comment-author-name {
   font-weight: bold;
 }
+
+.pagination-button {
+  padding: 10px;
+  text-align: center;
+  width: 170px;
+  margin: 0 auto;
+}
