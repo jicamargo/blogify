@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    # update the posts counter for each user
-    @user.update_posts_counter
+    @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:id])
+    
     # update the comments counter for each post
     # update the likes counter for each post
     @user.posts.each do |post|

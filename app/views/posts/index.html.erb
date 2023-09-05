@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="user-posts">
-      <% @posts.each do |post| %>
+      <% @user.posts.each do |post| %>
         <div class="post-box">
           <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
           <p><%= post.text %></p>
@@ -42,6 +42,9 @@
           </div>
         </div>
       <% end %>
+      <div class = "pagination-button">
+        <a class = "btn btn-primary"  href="<%= user_path(@user) %>">Back</a>
+      </div>
     </div>    
   </body>
 </html>

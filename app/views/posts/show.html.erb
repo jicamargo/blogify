@@ -16,7 +16,7 @@
       </div>
       <div class="comments-list-header">
         <div class="new-comment-button">
-          <%= link_to 'Comment', new_user_post_comment_path(@user, @post), class: 'btn btn-primary' %>
+          <%= link_to 'Comment', new_user_post_comment_path(@post.author, @post), class: 'btn btn-primary' %>
         </div>
         <div class="new-like-button">
           <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
