@@ -25,27 +25,27 @@ RSpec.feature 'Blogify app -', type: :system do
       expect(page).to have_content(post.title)
     end
 
-    scenario "I can see who wrote the post" do
+    scenario 'I can see who wrote the post' do
       visit user_post_path(user, post)
       expect(page).to have_content(user.name)
     end
 
-    scenario "I can see how many comments it has" do
+    scenario 'I can see how many comments it has' do
       visit user_post_path(user, post)
       expect(page).to have_content("Comments: #{post.comments_counter}")
     end
 
-    scenario "I can see how many likes it has" do
+    scenario 'I can see how many likes it has' do
       visit user_post_path(user, post)
       expect(page).to have_content("Likes: #{post.likes_counter}")
     end
 
-    scenario "I can see the post body" do
+    scenario 'I can see the post body' do
       visit user_post_path(user, post)
       expect(page).to have_content(post.text)
     end
 
-    scenario "I can see the username of each commentor" do
+    scenario 'I can see the username of each commentor' do
       comment1 = post.comments.create(text: 'Comment 1', author: user)
       comment2 = post.comments.create(text: 'Comment 2', author: user)
 
@@ -56,7 +56,7 @@ RSpec.feature 'Blogify app -', type: :system do
       expect(page).to have_content(comment2.author.name)
     end
 
-    scenario "I can see the comment each commentor left" do
+    scenario 'I can see the comment each commentor left' do
       comment1 = post.comments.create(text: 'Comment 1', author: user)
       comment2 = post.comments.create(text: 'Comment 2', author: user)
 

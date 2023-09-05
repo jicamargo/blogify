@@ -30,7 +30,7 @@ RSpec.feature 'Blogify app -', type: :system do
       expect(page).to have_content(user.name)
     end
 
-    scenario "I can see the number of posts the user has written" do
+    scenario 'I can see the number of posts the user has written' do
       visit user_posts_path(user)
       expect(page).to have_content("Number of Posts: #{user.posts_counter}")
     end
@@ -45,29 +45,30 @@ RSpec.feature 'Blogify app -', type: :system do
       expect(page).to have_content(post.text)
     end
 
-    scenario "I can see the first comments on a post" do
+    scenario 'I can see the first comments on a post' do
       comment1 = post.comments.create(text: 'Text of Post 1', author: user)
       comment2 = post.comments.create(text: 'Text of Post 2', author: user)
       comment3 = post.comments.create(text: 'Text of Post 3', author: user)
-      
+
       visit user_posts_path(user)
       sleep(1)
 
       expect(page).to have_content(comment1.text)
       expect(page).to have_content(comment2.text)
-      expect(page).to have_content(comment3.text)    end
+      expect(page).to have_content(comment3.text)
+    end
 
-    scenario "I can see how many comments a post has" do
+    scenario 'I can see how many comments a post has' do
       visit user_posts_path(user)
       expect(page).to have_content("Comments: #{post.comments_counter}")
     end
 
-    scenario "I can see how many likes a post has" do
+    scenario 'I can see how many likes a post has' do
       visit user_posts_path(user)
       expect(page).to have_content("Likes: #{post.likes_counter}")
     end
 
-    scenario "I can see a section for pagination if there are more posts than fit on the view" do
+    scenario 'I can see a section for pagination if there are more posts than fit on the view' do
       visit user_posts_path(user)
       expect(page).to have_selector('.pagination-button')
     end

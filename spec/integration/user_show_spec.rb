@@ -21,7 +21,7 @@ RSpec.feature 'Blogify app -', type: :system do
       expect(page).to have_content(user.name)
     end
 
-    scenario "I can see the number of posts the user has written" do
+    scenario 'I can see the number of posts the user has written' do
       visit user_path(user)
       expect(page).to have_content("Number of Posts: #{user.posts_counter}")
     end
@@ -35,8 +35,8 @@ RSpec.feature 'Blogify app -', type: :system do
       post1 = user.posts.create(title: 'Post 1', text: 'Text of Post 1', comments_counter: 0, likes_counter: 0)
       post2 = user.posts.create(title: 'Post 2', text: 'Text of Post 2', comments_counter: 0, likes_counter: 0)
       post3 = user.posts.create(title: 'Post 3', text: 'Text of Post 3', comments_counter: 0, likes_counter: 0)
-       
-      visit user_path(user)     
+
+      visit user_path(user)
       expect(page).to have_content(post1.title)
       expect(page).to have_content(post2.title)
       expect(page).to have_content(post3.title)

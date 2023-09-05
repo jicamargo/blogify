@@ -2,8 +2,8 @@ require './spec/rails_helper'
 
 RSpec.feature 'User Index Page', type: :system do
   # Assuming I have this sample users created for testing
-  let!(:user1) { User.create(name: 'Test user 1', photo: 'https://randomuser.me/api/portraits/men/1.jpg' , bio: 'Bio for test user', posts_counter: 0) }
-  let!(:user2) { User.create(name: 'Test user 2', photo: 'https://randomuser.me/api/portraits/men/2.jpg' , bio: 'Bio for test user', posts_counter: 0) }
+  let!(:user1) { User.create(name: 'Test user 1', photo: 'https://randomuser.me/api/portraits/men/1.jpg', bio: 'Bio for test user', posts_counter: 0) }
+  let!(:user2) { User.create(name: 'Test user 2', photo: 'https://randomuser.me/api/portraits/men/2.jpg', bio: 'Bio for test user', posts_counter: 0) }
 
   scenario 'I can see the username of all other users' do
     visit users_path
@@ -21,8 +21,8 @@ RSpec.feature 'User Index Page', type: :system do
 
   scenario 'I can see the number of posts each user has written' do
     visit users_path
-    expect(page).to have_content("Number of Posts: 0")
-    expect(page).to have_content("Number of Posts: 0")
+    expect(page).to have_content('Number of Posts: 0')
+    expect(page).to have_content('Number of Posts: 0')
   end
 
   scenario 'When I click on a user, I am redirected to that user\'s show page' do
