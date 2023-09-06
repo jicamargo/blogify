@@ -19,19 +19,28 @@ RSpec.describe 'UsersControllers', type: :request do
   end
 
   describe 'GET #show' do
+    let!(:user) do
+      User.create(
+        name: 'Test user',
+        photo: 'https://randomuser.me/api/portraits/men/1.jpg',
+        bio: 'Bio for test user',
+        posts_counter: 0
+      )
+    end
+
     it 'returns a successful response' do
-      get user_path(id: 1)
+      get user_path(id: user.id)
       expect(response).to have_http_status(200)
     end
 
     it 'renders the show template' do
-      get user_path(id: 1)
+      get user_path(id: user.id)
       expect(response).to render_template('show')
     end
 
     it 'renders the correct placeholder in the response body' do
-      get user_path(id: 1)
-      expect(response.body).to include('User profile')
+      get user_path(id: user.id)
+      expect(response.body).to include('User Profile')
     end
   end
 end

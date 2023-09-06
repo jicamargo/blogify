@@ -12,4 +12,8 @@ Rails.application.routes.draw do
       resources :likes, only: [:new, :create]
     end
   end
+
+  # deactive the favicon route in test environment
+  get '/favicon.ico', to: proc { [204, {}, []] }
+
 end
