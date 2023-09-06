@@ -84,4 +84,7 @@ end
 # rubocop linters checker
 gem 'rubocop', '>= 1.0', '< 2.0'
 
-# gem 'factory_bot_rails'
+# Devise to manage users
+gem 'devise'
+
+gem 'letter_opener'

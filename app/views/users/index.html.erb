@@ -4,6 +4,18 @@
     <title>List of Users</title>
   </head>
   <body>
+    <div class='sign_in_user_bar'>
+      <% unless user_signed_in? %>
+        <div class="user-sign-in-link">
+          <%= link_to 'Sign in', new_user_session_path, method: :delete %>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="user-sign-in-link">
+          <%= link_to 'Sign out', custom_destroy_user_session_path, method: :delete %>
+        </div>
+      <% end %>
+    </div>
     <ul class="user-list">
       <% @users.each do |user| %>
         <li class="user-item">
