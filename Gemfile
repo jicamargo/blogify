@@ -79,3 +79,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 # Devise to manage users
 gem 'devise'
+
+gem 'letter_opener'

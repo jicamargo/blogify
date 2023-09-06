@@ -241,3 +241,77 @@ body {
   width: 170px;
   margin: 0 auto;
 }
+
+/* style for user sign in up out forms and link */
+.log-in-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.sign_in_user_bar {
+  display: flex;
+  justify-content:end;
+  padding: 5px 10px;
+}
+
+.user-sign-in-link {
+  text-decoration: none;
+  /* color: var(--primary-color); */
+  color: var(--bg-primary-color-dark);
+  font-weight: bold;
+  transition: all 0.1s ease-in-out;
+}
+
+.user-sign-in-link:hover {
+  color: black;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.one-row-field {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.input-field {
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-sign-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  gap: 10px;
+}
