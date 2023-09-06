@@ -11,6 +11,7 @@ class LikesController < ApplicationController
 
     return unless @like.save
 
+    @like.update_likes_counter
     redirect_to user_post_path(@post.author, @post)
   end
 end

@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.author = @user
     if @comment.save
+      @comment.update_comments_counter
       flash.notice = 'New comment added!'
       redirect_to user_post_path(@post.author, @post)
     else
