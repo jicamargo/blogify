@@ -257,12 +257,13 @@ body {
 
 .sign_in_user_bar {
   display: flex;
-  justify-content:end;
+  justify-content: end;
   padding: 5px 10px;
 }
 
 .user-sign-in-link {
   text-decoration: none;
+
   /* color: var(--primary-color); */
   color: var(--bg-primary-color-dark);
   font-weight: bold;
