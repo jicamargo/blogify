@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
+    puts ">>>>>>>>>>>>>>>>>>>>>> this is the current user: #{current_user} <<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 
   def show
@@ -21,6 +22,21 @@ class PostsController < ApplicationController
     else
       flash.alert = "Post was not created! #{@post.errors.full_messages.join(', ')}"
       redirect_to new_user_post_path(@user)
+    end
+  end
+
+  # DELETE /users/:user_id/posts/:id
+  def destroy
+    @post = Post.find(params[:id])
+    @user = @post.author
+  
+    if can?(:delete, @post) # Use CanCanCan to authorize the deletion
+      @post.comments.destroy_all
+      @post.likes.destroy_all
+      @post.destroy
+      redirect_to user_posts_path(@user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(@user), alert: 'You are not authorized to delete this post.'
     end
   end
 

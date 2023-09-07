@@ -28,4 +28,9 @@ class User < ApplicationRecord
     self.photo ||= "https://randomuser.me/api/portraits/men/#{rand(1..100)}.jpg"
     self.posts_counter = 0
   end
+
+  # define roles for users
+  def admin?
+    role == 'admin'
+  end
 end

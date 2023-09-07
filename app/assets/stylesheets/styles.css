@@ -278,9 +278,8 @@ body {
 .field {
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  margin: 0 5px;
   padding: 10px;
-  gap: 5px;
 }
 
 .one-row-field {

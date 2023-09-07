@@ -23,6 +23,14 @@
           <div class='comments-likes-count'>
             <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
           </div>
+          <% if can? :manage, post %>
+            <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
+              <%= form.button type: :submit, class: 'btn btn-primary', data: { confirm: 'Are you sure you want to delete this post?' } do %>
+                Delete
+              <% end %>
+            <% end %>
+          <% end %>
+
           <div class='comments-box'>
             <div class= 'recent-comments-header'>
               <h4 class='comments-list-title'>Recent Comments</h4>
