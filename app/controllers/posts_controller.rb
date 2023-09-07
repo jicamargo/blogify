@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
+  load_and_authorize_resource # this will load the resource and authorize it for every action in this controller
 
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
@@ -31,14 +32,14 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.author
 
-    if can?(:delete, @post) # Use CanCanCan to authorize the deletion
+    # if can?(:delete, @post) # Use CanCanCan to authorize the deletion
       @post.comments.destroy_all
       @post.likes.destroy_all
       @post.destroy
       redirect_to user_posts_path(@user), notice: 'Post was successfully deleted.'
-    else
-      redirect_to user_posts_path(@user), alert: 'You are not authorized to delete this post.'
-    end
+    # else
+    #   redirect_to user_posts_path(@user), alert: 'You are not authorized to delete this post.'
+    # end
   end
 
   private
