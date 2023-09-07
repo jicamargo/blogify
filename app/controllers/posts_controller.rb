@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: %i[new create]
 
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @user = @post.author
-  
+
     if can?(:delete, @post) # Use CanCanCan to authorize the deletion
       @post.comments.destroy_all
       @post.likes.destroy_all

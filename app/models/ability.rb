@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Best practices: give permissions from the most restrictive to the least restrictive 
+    # Best practices: give permissions from the most restrictive to the least restrictive
     can :read, Post
     can :read, Comment
 
