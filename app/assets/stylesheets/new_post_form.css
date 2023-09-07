@@ -29,19 +29,36 @@ label {
   font-size: 16px;
 }
 
-/* Style the submit button */
+/* Style for submit button */
 .btn-primary {
   background-color: #007bff;
   text-decoration: none;
   color: #fff;
-  padding: 8px 20px;
+  padding: 6px 18px;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
+}
+
+/* Style for delete button */
+.btn-delete {
+  background-color: #ce362b;
+  text-decoration: none;
+  color: #fff;
+  padding: 3px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: #a0271f;
 }

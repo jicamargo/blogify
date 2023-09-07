@@ -181,6 +181,13 @@ body {
   border: 1px solid #ccc;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
 .post-title {
   font-size: 1.3rem;
   font-weight: bolder;
@@ -234,11 +241,12 @@ body {
 .comment-item {
   display: flex;
   flex-direction: row;
-  margin: 5px;
-  padding: 5px;
+  align-items: center;
+  margin: 10px;
+  padding: 5px 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.214);
 }
 
 .comment-info {
