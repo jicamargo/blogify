@@ -34,10 +34,10 @@ class PostsController < ApplicationController
     @user = @post.author
 
     # if can?(:delete, @post) # Use CanCanCan to authorize the deletion
-      @post.comments.destroy_all
-      @post.likes.destroy_all
-      @post.destroy
-      redirect_to user_posts_path(@user), notice: 'Post was successfully deleted.'
+    @post.comments.destroy_all
+    @post.likes.destroy_all
+    @post.destroy
+    redirect_to user_posts_path(@user), notice: 'Post was successfully deleted.'
     # else
     #   redirect_to user_posts_path(@user), alert: 'You are not authorized to delete this post.'
     # end
