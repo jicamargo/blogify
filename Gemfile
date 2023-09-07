@@ -87,4 +87,8 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 # Devise to manage users
 gem 'devise'
 
+# preview email in the browser instead of sending it
 gem 'letter_opener'
+
+# Cancancan to manage user permissions
+gem 'cancancan'

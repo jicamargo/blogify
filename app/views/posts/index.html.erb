@@ -18,11 +18,23 @@
     <div class="user-posts">
       <% @user.posts.each do |post| %>
         <div class="post-box">
-          <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
+          <div class="post-header">
+            <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
+            <div class="delete-post-btn">
+              <% if can? :manage, post %>
+                <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
+                  <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you want to delete this post?' } do %>
+                    Delete
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
           <p><%= post.text %></p>
           <div class='comments-likes-count'>
             <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
           </div>
+
           <div class='comments-box'>
             <div class= 'recent-comments-header'>
               <h4 class='comments-list-title'>Recent Comments</h4>

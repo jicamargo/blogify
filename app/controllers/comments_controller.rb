@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create]
+
   def new
     @user = User.find(params[:user_id])
     @post = Post.find(params[:post_id])
@@ -17,6 +19,20 @@ class CommentsController < ApplicationController
     else
       flash.alert = "Comment was not created! #{@comment.errors.full_messages.join(', ')}"
       redirect_to new_user_post_comment_path(@user, @post)
+    end
+  end
+
+  # DELETE /users/:user_id/posts/:id
+  def destroy
+    @comment = Comment.find(params[:id])
+    @post = Comment.find(params[:id]).post
+    @user = @post.author
+
+    if can?(:delete, @comment) # Use CanCanCan to authorize the deletion
+      @comment.destroy
+      redirect_to user_post_path(@user, @post), notice: 'Comment was successfully deleted.'
+    else
+      redirect_to user_post_path(@user, @post), alert: 'You are not authorized to delete this post.'
     end
   end
 

@@ -7,9 +7,21 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :users, only: [:index, :show] do
-    resources :posts, only: [:index, :show, :new, :create ] do
+    resources :posts, only: [:index, :show, :new, :create] do
       resources :comments, only: [:new, :create]
       resources :likes, only: [:new, :create]
+    end
+  end
+
+  resources :posts do
+    member do
+      delete 'delete', to: 'posts#destroy', as: 'delete_post'
+    end
+  end
+
+  resources :comments do
+    member do
+      delete 'delete', to: 'comments#destroy', as: 'delete_comment'
     end
   end
 

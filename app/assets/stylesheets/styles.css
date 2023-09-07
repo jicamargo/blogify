@@ -29,6 +29,45 @@
   color: var(--bg-primary-color-light);
 }
 
+/* style for navbar */
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  gap: 20px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: var(--bg-primary-color-dark);
+  font-weight: bold;
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar-link:hover {
+  color: black;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-user-photo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 1px solid var(--bg-primary-color-dark);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.466);
+  border-radius: 50%;
+}
+
+.user-sign-in-link {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
 /*  *********** end of styles for alert messages with flash ************  */
 
 /* define font family */
@@ -181,6 +220,13 @@ body {
   border: 1px solid #ccc;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
 .post-title {
   font-size: 1.3rem;
   font-weight: bolder;
@@ -231,6 +277,25 @@ body {
   color: var(--primary-gray-color);
 }
 
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.214);
+}
+
+.comment-info {
+  flex-grow: 1;
+}
+
+.comment-delete-button {
+  margin-left: 10px;
+}
+
 .comment-author-name {
   font-weight: bold;
 }
@@ -255,32 +320,11 @@ body {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
-.sign_in_user_bar {
-  display: flex;
-  justify-content: end;
-  padding: 5px 10px;
-}
-
-.user-sign-in-link {
-  text-decoration: none;
-
-  /* color: var(--primary-color); */
-  color: var(--bg-primary-color-dark);
-  font-weight: bold;
-  transition: all 0.1s ease-in-out;
-}
-
-.user-sign-in-link:hover {
-  color: black;
-  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
 .field {
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  margin: 0 5px;
   padding: 10px;
-  gap: 5px;
 }
 
 .one-row-field {
