@@ -26,12 +26,12 @@ class CommentsController < ApplicationController
     @post = Comment.find(params[:id]).post
     @user = @post.author
 
-    # if can?(:delete, @comment) # Use CanCanCan to authorize the deletion
+    if can?(:delete, @comment) # Use CanCanCan to authorize the deletion
       @comment.destroy
       redirect_to user_post_path(@user, @post), notice: 'Comment was successfully deleted.'
-    # else
-    #   redirect_to user_post_path(@user, @post), alert: 'You are not authorized to delete this post.'
-    # end
+    else
+      redirect_to user_post_path(@user, @post), alert: 'You are not authorized to delete this post.'
+    end
   end
   
   private

@@ -5,12 +5,18 @@ class Ability
 
   def initialize(user)
     # Best practices: give permissions from the most restrictive to the least restrictive 
-    can :read, Post # Allow all users to read posts
+    can :read, Post
+    can :read, Comment
 
-    if user.present?
-      can :manage, Post, author_id: user.id # Allow users to manage (delete) their own posts
-      can :manage, Post if user.admin?   # Allow admin users to manage (delete) all posts
-    end
+    return unless user.present?
+
+    can :manage, Post, author_id: user.id
+    can :manage, Comment, author_id: user.id
+
+    return unless user.admin?
+
+    can :manage, Post
+    can :manage, Comment
 
     # Define abilities for the user here. For example:
     #
