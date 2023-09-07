@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
-    puts ">>>>>>>>>>>>>>>>>>>>>> this is the current user: #{current_user} <<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 
   def show

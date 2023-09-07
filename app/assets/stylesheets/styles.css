@@ -231,6 +231,24 @@ body {
   color: var(--primary-gray-color);
 }
 
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.comment-info {
+  flex-grow: 1;
+}
+
+.comment-delete-button {
+  margin-left: 10px;
+}
+
 .comment-author-name {
   font-weight: bold;
 }
