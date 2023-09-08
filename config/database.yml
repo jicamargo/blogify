@@ -1,78 +1,32 @@
-# default: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#   username: postgres
-#   password: 0000
-#   host: 127.0.0.1
-
-# development:
-#   adapter: postgresql
-#   encoding: utf8
-#   database: blogify_development
-#   pool: 5
-#   host: 127.0.0.1
-#   username: postgres # your username in pgAdmin
-#   password: 0000
-
-# test:
-#   <<: *default
-#   database: blogify_test
-#   pool: 5
-#   host: 127.0.0.1
-#   username: postgres # your username in pgAdmin
-#   password: 0000
-
-# production:
-#   <<: *default
-#   database: blogify_production
-#   username: blogify
-#   password: <%= ENV["blogify_DATABASE_PASSWORD"] %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ............... Don't forget to remove this...............
-
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: 0000
+  host: 127.0.0.1
 
 development:
-  <<: *default
-  database: R-Blog-pp
-  username: Ibu
-  password: ibuPostData1749%
-  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: blogify_development
+  pool: 5
+  host: 127.0.0.1
+  username: postgres # your username in pgAdmin
+  password: 0000
 
 test:
   <<: *default
-  database: R-Blog-pp-testing
-  username: Ibu
-  password: ibuPostData1749%
-  host: localhost
+  database: blogify_test
+  pool: 5
+  host: 127.0.0.1
+  username: postgres # your username in pgAdmin
+  password: 0000
 
 production:
   <<: *default
-  database: R-Blog-pp
-  username: Ibu
-  password: ibuPostData1749%
-  host: localhost
+  database: blogify_production
+  username: blogify
+  password: <%= ENV["blogify_DATABASE_PASSWORD"] %>
+
+
