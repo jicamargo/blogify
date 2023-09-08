@@ -34,7 +34,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  
 
   # deactive the favicon route in test environment
   get '/favicon.ico', to: proc { [204, {}, []] }

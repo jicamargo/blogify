@@ -11,10 +11,10 @@ class Api::V1::CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     json_request = JSON.parse(request.body.read)
-    text = json_request["text"]
+    text = json_request['text']
     author = @post.author
 
-    @comment = @post.comments.new(text: text, author: author)
+    @comment = @post.comments.new(text:, author:)
     if @comment.save
       render json: @comment
     else
