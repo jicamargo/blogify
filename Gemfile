@@ -92,3 +92,8 @@ gem 'letter_opener'
 
 # Cancancan to manage user permissions
 gem 'cancancan'
+
+# JWT gem
+gem 'devise-jwt'
+
+gem "rack-cors"
