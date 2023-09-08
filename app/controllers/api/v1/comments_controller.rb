@@ -8,19 +8,13 @@ class Api::V1::CommentsController < ApplicationController
     render json: @comments
   end
 
-  # this method is called when a user creates a new comment
-  # POST /api/v1/posts/:post_id/comments
-  # uses JSON format for the request body:
-  # {
-  #   "text": "This is a comment",
-  #   "author_id": 1
-  # }
   def create
     @post = Post.find(params[:post_id])
     json_request = JSON.parse(request.body.read)
     text = json_request["text"]
-    author_id = json_request["author_id"]
-        @comment = @post.comments.new(text: text, author_id: author_id)
+    author = @post.author
+
+    @comment = @post.comments.new(text: text, author: author)
     if @comment.save
       render json: @comment
     else
