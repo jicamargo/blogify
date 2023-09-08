@@ -92,3 +92,7 @@ gem 'letter_opener'
 
 # Cancancan to manage user permissions
 gem 'cancancan'
+
+# JWT gem authentication  with devise 
+gem 'devise-jwt', '~> 0.7'
+

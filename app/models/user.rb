@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+  include Devise::JWT::RevocationStrategies::JTIMatcher
+  devise :database_authenticatable, :registerable, :validatable,
+         :jwt_authenticatable, :recoverable, :rememberable, jwt_revocation_strategy: self
 
   before_create :set_default_values
 
@@ -32,5 +31,11 @@ class User < ApplicationRecord
   # define roles for users
   def admin?
     role == 'admin'
+  end
+
+  # Method to generate a JWT token for this user
+  def generate_jwt
+    payload = { user_id: id }
+    JWT.encode(payload, Rails.application.config.jwt_secret, 'HS256')
   end
 end

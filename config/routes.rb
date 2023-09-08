@@ -25,6 +25,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show] do
+        resources :posts, only: [:index, :show] do
+          resources :comments, only: [:index, :show, :new, :create]
+        end
+      end
+    end
+  end
+
   # deactive the favicon route in test environment
   get '/favicon.ico', to: proc { [204, {}, []] }
 
