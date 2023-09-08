@@ -33,4 +33,10 @@ class User < ApplicationRecord
   def admin?
     role == 'admin'
   end
+
+  # Method to generate a JWT token for this user
+  def generate_jwt
+    payload = { user_id: id }
+    JWT.encode(payload, Rails.application.config.jwt_secret, 'HS256')
+  end
 end

@@ -92,3 +92,6 @@ gem 'letter_opener'
 
 # Cancancan to manage user permissions
 gem 'cancancan'
+
+# add jwt authentication
+gem 'jwt'
