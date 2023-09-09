@@ -1,44 +1,36 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/posts', type: :request do
-
+describe 'Posts API' do
   path '/api/v1/users/{user_id}/posts' do
-    # You'll want to customize the parameter types...
-    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
+    get 'Retrieves posts for a user' do
+      tags 'Posts'
+      produces 'application/json'
+      parameter name: :user_id, in: :path, type: :string
 
-    get('list posts') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
+      # verify the current database:
+      puts "database: #{ActiveRecord::Base.connection.current_database}"
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+
+      response '200', 'posts found' do
+        schema type: :array,
+               items: {
+                 type: :object,
+                 properties: {
+                   title: { type: :string },
+                   text: { type: :string }
+                 },
+                 required: %w[title text]
+               }
+
+        # Define `user_id` within the example group
+        parameter name: :user_id, in: :path, type: :string, required: true
+
+        let(:user_id) { '1' }
         run_test!
       end
-    end
-  end
 
-  path '/api/v1/users/{user_id}/posts/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    get('show post') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '404', 'user not found' do
+        let(:user_id) { 985_411 }
         run_test!
       end
     end

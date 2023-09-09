@@ -40,4 +40,8 @@ Rails.application.routes.draw do
   # deactive the favicon route in test environment
   get '/favicon.ico', to: proc { [204, {}, []] }
 
+  # routes for swagger documentation
+  if Rails.env.development?
+    mount SwaggerUiEngine::Engine, at: '/api-docs'
+  end
 end

@@ -1,86 +1,75 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/comments', type: :request do
-
+describe 'Comments API' do
   path '/api/v1/users/{user_id}/posts/{post_id}/comments' do
-    # You'll want to customize the parameter types...
-    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
-    parameter name: 'post_id', in: :path, type: :string, description: 'post_id'
+    get 'Retrieves comments for a post' do
+      tags 'Comments'
+      produces 'application/json'
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :post_id, in: :path, type: :string
 
-    get('list comments') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
-        let(:post_id) { '123' }
+      # Verify the current database:
+      puts "database: #{ActiveRecord::Base.connection.current_database}"
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '200', 'comments found' do
+        schema type: :array,
+               items: {
+                 type: :object,
+                 properties: {
+                   id: { type: :integer },
+                   author_id: { type: :integer },
+                   text: { type: :string }
+                 },
+                 required: %w[text id]
+               }
+
+        # Define `user_id` and `post_id` within the example group
+        parameter name: :user_id, in: :path, type: :string, required: true
+        parameter name: :post_id, in: :path, type: :string, required: true
+
+        let(:user_id) { '1' }
+        let(:post_id) { '1' }
+        run_test!
+      end
+
+      response '404', 'post not found' do
+        let(:user_id) { '1' }
+        let(:post_id) { '985411' } # An ID that doesn't exist in the database
         run_test!
       end
     end
 
-    post('create comment') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
-        let(:post_id) { '123' }
+    post 'Creates a new comment for a post' do
+      tags 'Comments'
+      consumes 'application/json'
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :post_id, in: :path, type: :string
+      parameter name: :comment, in: :body, schema: {
+        type: :object,
+        properties: {
+          text: { type: :string }
+        },
+        required: ['text']
+      }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '201', 'comment created' do
+        let(:user_id) { '1' }
+        let(:post_id) { '1' }
+        let(:comment) { { text: 'THIS IS A NEW COMMENT USING THE API ENDPOINT' } }
         run_test!
       end
-    end
-  end
 
-  path '/api/v1/users/{user_id}/posts/{post_id}/comments/new' do
-    # You'll want to customize the parameter types...
-    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
-    parameter name: 'post_id', in: :path, type: :string, description: 'post_id'
-
-    get('new comment') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
-        let(:post_id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '404', 'post not found' do
+        let(:user_id) { '1' }
+        let(:post_id) { '985411' } # An ID that doesn't exist in the database
+        let(:comment) { { text: 'THIS IS A NEW COMMENT USING THE API ENDPOINT' } }
         run_test!
       end
-    end
-  end
 
-  path '/api/v1/users/{user_id}/posts/{post_id}/comments/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'user_id', in: :path, type: :string, description: 'user_id'
-    parameter name: 'post_id', in: :path, type: :string, description: 'post_id'
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    get('show comment') do
-      response(200, 'successful') do
-        let(:user_id) { '123' }
-        let(:post_id) { '123' }
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response '422', 'invalid request' do
+        let(:user_id) { '1' }
+        let(:post_id) { '1' }
+        let(:comment) { { text: '' } } # Invalid request with empty text
         run_test!
       end
     end

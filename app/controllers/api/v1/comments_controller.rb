@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :set_post
   skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :find_post, only: %i[index create]
 
   # GET /api/v1/posts/:post_id/comments
   def index
@@ -9,22 +9,30 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
     json_request = JSON.parse(request.body.read)
     text = json_request['text']
     author = @post.author
 
-    @comment = @post.comments.new(text:, author:)
-    if @comment.save
-      render json: @comment
+    if text.present? # Verify that the text is not empty
+      @comment = @post.comments.new(text:, author:)
+
+      if @comment.save
+        render json: @comment, status: :created
+      else
+        render json: { error: 'Invalid comment' }, status: :unprocessable_entity
+      end
     else
-      render json: { error: 'Invalid comment' }, status: :unprocessable_entity
+      render json: { error: 'Text cannot be empty' }, status: :unprocessable_entity
     end
   end
 
   private
 
-  def set_post
-    @post = Post.find(params[:post_id])
+  def find_post
+    @post = Post.find_by(id: params[:post_id])
+
+    return if @post
+
+    render json: { error: 'Post not found' }, status: :not_found
   end
 end

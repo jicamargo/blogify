@@ -63,6 +63,9 @@ group :development, :test do
   # The following gems aids with the nuts and bolts
   # of interacting with the browser.
   gem 'webdrivers'
+
+  # Rswag to generate swagger documentation
+  gem 'rswag'
 end
 
 group :development do
@@ -75,6 +78,8 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+gem 'shoulda-matchers', '~> 4.0'
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
@@ -93,8 +98,5 @@ gem 'letter_opener'
 # Cancancan to manage user permissions
 gem 'cancancan'
 
-# JWT gem authentication  with devise 
+# JWT gem authentication  with devise
 gem 'devise-jwt', '~> 0.7'
-
-# Rswag to generate swagger documentation
-gem 'rswag'
