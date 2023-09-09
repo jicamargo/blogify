@@ -96,3 +96,5 @@ gem 'cancancan'
 # JWT gem authentication  with devise 
 gem 'devise-jwt', '~> 0.7'
 
+# Rswag to generate swagger documentation
+gem 'rswag'
