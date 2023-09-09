@@ -10,7 +10,6 @@ describe 'Posts API' do
       # verify the current database:
       puts "database: #{ActiveRecord::Base.connection.current_database}"
 
-
       response '200', 'posts found' do
         schema type: :array,
                items: {
