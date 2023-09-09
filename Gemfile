@@ -66,6 +66,8 @@ group :development, :test do
 
   # Rswag to generate swagger documentation
   gem 'rswag'
+
+  gem 'swagger_ui_engine'
 end
 
 group :development do
@@ -79,7 +81,7 @@ group :development do
   # gem "spring"
 end
 
-gem 'shoulda-matchers', '~> 4.0'
+gem 'shoulda-matchers', '4.5.1'
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

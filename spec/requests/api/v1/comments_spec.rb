@@ -1,5 +1,11 @@
 require 'swagger_helper'
 
+# Define a method to configure the user_id and post_id parameters
+def configure_user_and_post(user_id, post_id)
+  let(:user_id) { user_id }
+  let(:post_id) { post_id }
+end
+
 describe 'Comments API' do
   path '/api/v1/users/{user_id}/posts/{post_id}/comments' do
     get 'Retrieves comments for a post' do
@@ -23,22 +29,21 @@ describe 'Comments API' do
                  required: %w[text id]
                }
 
-        # Define `user_id` and `post_id` within the example group
         parameter name: :user_id, in: :path, type: :string, required: true
         parameter name: :post_id, in: :path, type: :string, required: true
 
-        let(:user_id) { '1' }
-        let(:post_id) { '1' }
+        configure_user_and_post('1', '1')
         run_test!
       end
 
       response '404', 'post not found' do
-        let(:user_id) { '1' }
-        let(:post_id) { '985411' } # An ID that doesn't exist in the database
+        configure_user_and_post('1', '985411') # An ID that doesn't exist in the database
         run_test!
       end
     end
+  end
 
+  path '/api/v1/users/{user_id}/posts/{post_id}/comments' do
     post 'Creates a new comment for a post' do
       tags 'Comments'
       consumes 'application/json'
@@ -53,22 +58,19 @@ describe 'Comments API' do
       }
 
       response '201', 'comment created' do
-        let(:user_id) { '1' }
-        let(:post_id) { '1' }
+        configure_user_and_post('1', '1')
         let(:comment) { { text: 'THIS IS A NEW COMMENT USING THE API ENDPOINT' } }
         run_test!
       end
 
       response '404', 'post not found' do
-        let(:user_id) { '1' }
-        let(:post_id) { '985411' } # An ID that doesn't exist in the database
+        configure_user_and_post('1', '985411') # An ID that doesn't exist in the database
         let(:comment) { { text: 'THIS IS A NEW COMMENT USING THE API ENDPOINT' } }
         run_test!
       end
 
       response '422', 'invalid request' do
-        let(:user_id) { '1' }
-        let(:post_id) { '1' }
+        configure_user_and_post('1', '1')
         let(:comment) { { text: '' } } # Invalid request with empty text
         run_test!
       end
