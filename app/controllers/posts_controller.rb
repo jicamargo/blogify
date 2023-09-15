@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!, only: %i[new create]
-  load_and_authorize_resource # this will load the resource and authorize it for every action in this controller
+  load_and_authorize_resource
 
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])

@@ -1,32 +1,25 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
   password: 0000
-  host: 127.0.0.1
+
 
 development:
-  adapter: postgresql
-  encoding: utf8
+  <<: *default
   database: blogify_development
-  pool: 5
-  host: 127.0.0.1
-  username: postgres # your username in pgAdmin
-  password: 0000
-
+  
 test:
   <<: *default
   database: blogify_test
-  pool: 5
-  host: 127.0.0.1
-  username: postgres # your username in pgAdmin
-  password: 0000
-
+  
 production:
   <<: *default
   database: blogify_production
   username: blogify
-  password: <%= ENV["blogify_DATABASE_PASSWORD"] %>
+  password: <%= ENV["BLOGIFY_DATABASE_PASSWORD"] %>
 
 
