@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Profile</title>
+  </head>
+  <body>
+    <div class="user-details">
+      <div class="user-header">
+        <img src="<%= @user.photo %>" alt="User Photo" class="user-photo">
+        <div class="user-info">
+          <div class="user-box">
+            <h2><%= @user.name %></h2>
+            <p>Number of Posts: <%= @user.posts_counter %></p>
+          </div>
+        </div>
+      </div>
+      <div class="user-bio">
+        <h2>Bio</h2>
+        <p><%= @user.bio %></p>
+      </div>
+    </div>
+    <div class="user-posts">
+      <div class="post-list-header">
+        <h4 class='post-list-title'>Recent post</h4>
+        <div class="new-post-button">
+          <%= link_to 'New Post', new_user_post_path(@user), class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <% @user.recent_posts.each do |post| %>
+        <div class="post-box">
+          <div class="post-header">
+            <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
+            <div class="delete-post-btn">
+              <% if can? :manage, post %>
+                <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
+                  <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you want to delete this post?' } do %>
+                    Delete
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <p><%= post.text %></p>
+          <div class='comments-likes-count'>
+            <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
+          </div>
+        </div>
+      <% end %>
+      <a class= 'link-see-all-posts btn-primary' href="<%= user_posts_path(@user) %>">See all posts</a>
+    </div>    
+  </body>
+</html>

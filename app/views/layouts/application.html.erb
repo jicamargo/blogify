@@ -5,12 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <!-- notifications bar -->
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
+    
+    <!-- Main content -->
+    <nav class='navbar'>
+      <%= link_to 'Home', users_path, class: "navbar-link" %>
+      <% unless user_signed_in? %>
+        <%= link_to 'Sign in', new_user_session_path, method: :delete, class: "navbar-link" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= link_to 'Sign out', custom_destroy_user_session_path, method: :delete, class: "navbar-link" %>
+        <img src="<%= current_user.photo %>" alt="User Photo" class="navbar-user-photo">
+      <% end %>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

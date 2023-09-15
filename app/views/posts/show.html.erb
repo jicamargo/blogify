@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post Details</title>
+</head>
+  <body>
+    <div class="post-box">
+      <h3>
+        <span class='post-title'><%= @post.title %></span>
+        by 
+        <span class='post-author'><%= @post.author.name %></span>
+      </h3>
+      <p><%= @post.text %></p>
+      <div class='comments-likes-count'>
+        <p>Comments: <%= @post.comments_counter %>  |  Likes: <%= @post.likes_counter %></p>
+      </div>
+      <div class="comments-list-header">
+        <div class="new-comment-button">
+          <%= link_to 'Comment', new_user_post_comment_path(@post.author, @post), class: 'btn btn-primary' %>
+        </div>
+        <div class="new-like-button">
+          <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
+            <%= form.submit "Like", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+      <div class='comments-box'>
+        <h4 class='comments-list-title'>Comments</h4>  
+
+        <ul class="comments-list">
+          <% @post.comments.each do |comment| %>
+            <li class="comment-item">
+              <div class="comment-info">
+                <p><span class='comment-author-name'><%= comment.author.name %></span>: <%= comment.text %></p>
+              </div>
+              <div class="comment-delete-button">
+                <% if can? :manage, comment %>
+                  <%= form_with(url: delete_comment_comment_path(comment), method: :delete, remote: true) do |form| %>
+                    <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you?' } do %>
+                      Delete
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

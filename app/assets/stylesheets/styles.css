@@ -1,0 +1,362 @@
+/* define variables */
+:root {
+  --primary-color: #007bff;
+  --primary-color-light: #4dabf5;
+  --primary-gray-color: #6c757d;
+  --bg-primary-color: #f1f3f6;
+  --bg-primary-color-light: #f8f9fa;
+  --bg-primary-color-dark: #343a40;
+  --bg-green-color: #4caf50;
+  --bg-red-color: #f44336;
+}
+
+/* styles for alert messages with flash */
+.alert {
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-notice {
+  background-color: var(--bg-green-color);
+  color: var(--bg-primary-color-light);
+}
+
+.alert-alert {
+  background-color: var(--bg-red-color);
+  color: var(--bg-primary-color-light);
+}
+
+/* style for navbar */
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  gap: 20px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: var(--bg-primary-color-dark);
+  font-weight: bold;
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar-link:hover {
+  color: black;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-user-photo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 1px solid var(--bg-primary-color-dark);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.466);
+  border-radius: 50%;
+}
+
+.user-sign-in-link {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+/*  *********** end of styles for alert messages with flash ************  */
+
+/* define font family */
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Define styles for the user list */
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* Define styles for each user item */
+.user-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin: 5px 1px;
+  padding: 5px;
+}
+
+/* Define styles for user photo */
+.user-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid var(--bg-primary-color-dark);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+}
+
+/* Define styles for user info */
+.user-info {
+  flex: 1;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+/* Define styles for user name */
+.user-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+/* general style for labels that are links */
+.label-link {
+  text-decoration: underline;
+  font-weight: bold;
+  color: var(--bg-primary-color-dark);
+  transition: all 0.1s ease-in-out;
+}
+
+.label-link:hover {
+  color: black;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* general style for buttons that are links */
+.link-btn {
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--bg-primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-btn:hover {
+  background-color: var(--bg-primary-color-dark);
+  font-weight: bold;
+  color: white;
+}
+
+/* Define styles for number of posts */
+.user-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+/* ############################### styles for show.html.erb ############################ */
+
+/* Define styles for each user item */
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-header {
+  display: flex;
+  margin: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-bio {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.user-bio h2 {
+  margin: 5px;
+  font-size: 1.3rem;
+}
+
+.user-bio p {
+  margin: 5px;
+  font-size: 0.9rem;
+}
+
+.post-list-header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments-list-header {
+  display: flex;
+  padding: 5px;
+  gap: 10px;
+  justify-content: end;
+  align-items: center;
+}
+
+.user-posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post-box {
+  margin: 5px;
+  padding: 5px;
+  padding-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+
+.post-title {
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+.comments-likes-count {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin: 5px;
+  gap: 10px;
+}
+
+.link-post-details {
+  padding: 0.5rem 1rem;
+  margin-bottom: 5px;
+}
+
+.link-see-all-posts {
+  text-align: center;
+  width: 170px;
+  margin: 0 auto;
+}
+
+.comments-box {
+  margin: 5px;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+}
+
+.recent-comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-list-title,
+.post-list-title {
+  text-align: center;
+  margin: 5px;
+  font-size: 1.3rem;
+  color: var(--primary-gray-color);
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.214);
+}
+
+.comment-info {
+  flex-grow: 1;
+}
+
+.comment-delete-button {
+  margin-left: 10px;
+}
+
+.comment-author-name {
+  font-weight: bold;
+}
+
+.pagination-button {
+  padding: 10px;
+  text-align: center;
+  width: 170px;
+  margin: 0 auto;
+}
+
+/* style for user sign in up out forms and link */
+.log-in-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.one-row-field {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.input-field {
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-sign-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  gap: 10px;
+}
