@@ -65,9 +65,9 @@ group :development, :test do
   gem 'webdrivers'
 
   # Rswag to generate swagger documentation
-  gem 'rswag'
+  # gem 'rswag'
 
-  gem 'swagger_ui_engine'
+  # gem 'swagger_ui_engine'
 end
 
 group :development do
