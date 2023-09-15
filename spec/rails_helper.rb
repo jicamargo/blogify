@@ -68,3 +68,5 @@ RSpec.configure do |config|
 
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
 end
+
+Capybara.default_driver = :selenium_chrome

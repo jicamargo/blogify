@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # mount Rswag::Ui::Engine => '/api-docs'
+  # mount Rswag::Api::Engine => '/api-docs'
   devise_for :users
   devise_scope :user do
     get "/custom_sign_out" => "devise/sessions#destroy", as: :custom_destroy_user_session
@@ -38,4 +40,8 @@ Rails.application.routes.draw do
   # deactive the favicon route in test environment
   get '/favicon.ico', to: proc { [204, {}, []] }
 
+  # routes for swagger documentation
+  # if Rails.env.development?
+  #   mount SwaggerUiEngine::Engine, at: '/api-docs'
+  # end
 end
