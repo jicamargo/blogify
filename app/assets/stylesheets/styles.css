@@ -74,6 +74,11 @@
 body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Define styles for the user list */
@@ -311,13 +316,15 @@ body {
 .log-in-section {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin: 5px;
+  align-items: center;
+  max-width: 500px;
+  margin: auto;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+  background: #d9dadb;
 }
 
 .field {
