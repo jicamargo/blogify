@@ -75,21 +75,36 @@ body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: block;
   align-items: center;
 }
 
 /* Define styles for the user list */
+.users-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .user-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px; 
 }
 
 .user-link {
   text-decoration: none;
   color: var(--primary-color);
+}
+
+.user-list > * {
+  flex: 1;
+  min-width: 300px; 
+  max-width: 300px; 
 }
 
 /* Define styles for each user item */
