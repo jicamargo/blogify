@@ -1,0 +1,40 @@
+<nav class="navbar nav-underline navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <%= link_to 'Blogify', root_path, class: "navbar-brand" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: "nav-link", 'aria-current' => "page" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My Account
+          </a>
+          <ul class="dropdown-menu">
+            <% unless user_signed_in? %>
+              <li>
+                <%= link_to 'Sign in', new_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to 'Sign out', custom_destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            <% end %>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+          </ul>
+          <% if user_signed_in? %>
+            <li>
+              <img src="<%= current_user.photo %>" alt="User Photo" class="navbar-user-photo">
+            </li>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
