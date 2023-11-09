@@ -1,14 +1,73 @@
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Search</button>
+<button id='SidebarToggleButton' class="btn btn-primary position-absolute z-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+   Hide < 
+</button>
 
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="offcanvas offcanvas-start show position-relative z-2 bg-dark-subtle vh-100" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Search options</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <p>Recent posts</p>
-    <p>Recent comments</p>
-    <p>Most commented posts</p>
+    <ul class="list-group list-group-numbered">
 
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+      
+    </ul>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggleButton = document.getElementById('SidebarToggleButton');
+    var offcanvas = document.getElementById('offcanvasScrolling');
+
+    // Initialize the button text when page loads
+    toggleButton.textContent = 'Search Options <<';
+  
+    // set the toggleButton to the same size and position of offcanvas-header, even if the window is resized
+    function UpdateButtonWidth() {
+      var offcanvasHeader = offcanvas.querySelector('.offcanvas-header');
+      toggleButton.style.width = offcanvasHeader.offsetWidth + 'px';
+      toggleButton.style.height = offcanvasHeader.offsetHeight + 'px';
+    }
+
+    UpdateButtonWidth();
+
+    window.addEventListener('resize', function () {
+      UpdateButtonWidth();
+    });
+   
+    toggleButton.addEventListener('click', function () {
+      var hasShowClass = offcanvas.classList.contains('show');
+
+      if (hasShowClass) {
+        toggleButton.textContent = 'Search Options';
+      } else {
+        toggleButton.textContent = 'Search Options <<';
+      }
+    });
+  });
+</script>
