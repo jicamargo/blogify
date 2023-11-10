@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/recent_posts', to: 'posts#recent', as: 'recent_posts'
+
   resources :comments do
     member do
       delete 'delete', to: 'comments#destroy', as: 'delete_comment'

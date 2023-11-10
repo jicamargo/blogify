@@ -5,6 +5,11 @@ class PostsController < ApplicationController
   def index
     @user = User.includes(posts: [{ comments: :author }, :comments]).find(params[:user_id])
   end
+  
+  def recent
+    @recent_posts = Post.order(created_at: :desc).limit(10)
+    puts @recent_posts
+  end
 
   def show
     @post = Post.includes([{ comments: :author }, :comments]).find_by(id: params[:id])
