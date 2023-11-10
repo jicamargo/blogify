@@ -1,9 +1,5 @@
-<button id='SidebarToggleButton' class="btn btn-primary position-absolute z-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-   Show options 
-</button>
-
 <div 
-  class="offcanvas offcanvas-start position-relative z-0 bg-dark-subtle mt-5 <%= session[:sidebar_state] == "hide" ? "" : "show" %>"
+  class="offcanvas offcanvas-start position-relative z-0 bg-dark-subtle vh-100"
   data-bs-scroll="true" 
   data-bs-backdrop="false"
   tabindex="-1" 
@@ -12,32 +8,22 @@
 >
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Search options</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button id="closeSidebarButton" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <ul class="list-group list-group-numbered">
-
-      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Recent posts</div>
-          Content for list item
-        </div>
+    <ul class="list-group list-group">
+      <%= link_to recent_posts_path, class: "list-group-item d-flex justify-content-between align-items-start py-3" do %>
+        <div class="ms-2 me-auto fw-bold">Recent posts</div>
         <span class="badge bg-primary rounded-pill">14</span>
       <% end %>
 
-      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Recent posts</div>
-          Content for list item
-        </div>
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start py-3" do %>
+        <div class="ms-2 me-auto fw-bold">Recent commented posts</div>
         <span class="badge bg-primary rounded-pill">14</span>
       <% end %>
 
-      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Recent posts</div>
-          Content for list item
-        </div>
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start py-3" do %>
+        <div class="ms-2 me-auto fw-bold">Most liked posts</div>
         <span class="badge bg-primary rounded-pill">14</span>
       <% end %>
 
@@ -46,45 +32,55 @@
 </div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOMContentLoaded event');
+    initSideBar();
+  });
+
   document.addEventListener('turbo:load', function () {
-    var toggleButton = document.getElementById('SidebarToggleButton');
-    var offcanvas = document.getElementById('offcanvasScrolling');
+    console.log('turbo:load event');
+    initSideBar();
+  });
 
-    // gets the sidebar state from the local session storage
-    var sidebarState = sessionStorage.getItem('sidebarState') || 'show';
+  function handleSideBarToggle() {
+    let offcanvas = document.getElementById('offcanvasScrolling');
+    let hasShowClass = offcanvas.classList.contains('show');
+    let mainContainer = document.getElementById('main-container');
 
-    // updates offcanvas class based on the sidebar state
-    offcanvas.classList.toggle('show', sidebarState === 'show');
 
-    toggleButton.addEventListener('click', function () {
-      var hasShowClass = offcanvas.classList.contains('show');
+    console.log("click event - hasShowClass: ", hasShowClass);
+
+    sidebarState = hasShowClass ? 'hide' : 'show';
+    sessionStorage.setItem('sidebarState', sidebarState);
+
+    if (sidebarState === 'hide') {
+      setTimeout(() => mainContainer.classList.toggle('flex-column-reverse', true), 300);
+    } else {
+      mainContainer.classList.toggle('flex-column-reverse', false);
+    }
+  };   
+
+
+  function initSideBar() {
+    let toggleButton = document.getElementById('SidebarNavButton');
+    let closeSidebarButton = document.getElementById('closeSidebarButton');
+    let mainContainer = document.getElementById('main-container');
+    let offcanvas = document.getElementById('offcanvasScrolling');
   
-      // change State and save it to the local session storage
-      sidebarState = hasShowClass ? 'hide' : 'show';
-      sessionStorage.setItem('sidebarState', sidebarState);
+    let hasShowClass = offcanvas.classList.contains('show');  
+    let sidebarState = sessionStorage.getItem('sidebarState') || 'show';
 
-      if (sidebarState==='show') {
-        toggleButton.textContent = 'Hide options';
-        offcanvas.classList.toggle('position-relative', true);
-      } else {
-        toggleButton.textContent = '>>';
-        offcanvas.top = '200px';
-        offcanvas.classList.toggle('position-relative', false);
-      }
-    });
-
-    // set the toggleButton to the same size and position of offcanvas-header, even if the window is resized
-    function UpdateButtonWidth() {
-      var offcanvasHeader = offcanvas.querySelector('.offcanvas-header');
-      toggleButton.style.width = offcanvasHeader.offsetWidth + 'px';
-      toggleButton.style.height = offcanvasHeader.offsetHeight + 'px';
+    console.log("inside sidebar script - sidebarState: ", sidebarState);
+    mainContainer.classList.toggle('flex-column-reverse', !hasShowClass);
+    
+    if (sidebarState==='show' && !hasShowClass) {
+      offcanvas.classList.toggle('show', true);
+    } else if (sidebarState==='hide' && hasShowClass) {
+      offcanvas.classList.toggle('show', false);
     }
 
-    UpdateButtonWidth();
 
-    window.addEventListener('resize', function () {
-      UpdateButtonWidth();
-    });
-   
-  });
+    closeSidebarButton.addEventListener('click', handleSideBarToggle);
+    toggleButton.addEventListener('click', handleSideBarToggle);
+  }
 </script>

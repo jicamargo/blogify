@@ -1,0 +1,49 @@
+<div class='container d-flex flex-column pt-2'>
+  <h1>Recent Posts</h1>
+
+  <div class="recent-posts">
+    <% @recent_posts.each do |post| %>
+      <div class="container shadow post-box p-2 mb-3">
+        <div class="post-header">
+          <div>
+            <a class="post-title label-link" href="<%= user_post_path(post.author, post) %> ">
+              <h3>
+                <span class='post-title'><%= post.title %></span>
+                by
+                <span class='post-author'><%= post.author.name %></span>
+              </h3>
+            </a>
+            <div class="post-date fw-medium fst-italic">
+              <%= time_ago_in_words(post.created_at) %> ago
+            </div>
+          </div>
+          <div class='d-flex'>
+            <div class='see-all-comments-button'>
+              <a 
+                class= "btn btn-primary fa-solid fa-magnifying-glass"
+                aria-label="See all comments"
+                href="<%= user_post_path(post.author, post) %>"
+              >
+              </a>
+            </div>
+            <div class="delete-post-btn">
+              <% if can? :manage, post %>
+                <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
+                  <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you want to delete this post?' } do %>
+                    <i class="fa-solid fa-trash" aria-label="Delete"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class='comments-likes-count d-flex align-items-center'>
+          <div>
+            <span>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></span>
+          </div>
+        </div>
+        <p><%= post.text %></p>
+      </div>
+    <% end %>
+  </div>    
+</div>

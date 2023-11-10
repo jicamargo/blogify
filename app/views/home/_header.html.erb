@@ -6,7 +6,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav gap-3">
+        <button id='SidebarNavButton' class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" aria-label="Toggle navigation">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+        <li class="nav-item">
+          <%= content_tag(:li, link_to('New Post', new_user_post_path(current_user), class: "nav-link")) if user_signed_in? %>
+        </li>
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: "nav-link", 'aria-current' => "page" %>
         </li>

@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     # Best practices: give permissions from the most restrictive to the least restrictive
     can :read, Post
+    can :recent, Post
     can :read, Comment
 
     return unless user.present?

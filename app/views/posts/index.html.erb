@@ -1,62 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>User Posts</title>
-</head>
-  <body>   
-    <div class="user-details">
-      <div class="user-header">
-        <img src="<%= @user.photo %>" alt="User Photo" class="user-photo">
-        <div class="user-info">
-          <div class="user-box">
-            <h2><%= @user.name %></h2>
-            <p>Number of Posts: <%= @user.posts_counter %></p>
-          </div>
+
+<div class='container'>   
+  <div class="user-details">
+    <div class="user-header">
+      <img src="<%= @user.photo %>" alt="User Photo" class="user-photo">
+      <div class="user-info">
+        <div class="user-box">
+          <h2><%= @user.name %></h2>
+          <p>Number of Posts: <%= @user.posts_counter %></p>
         </div>
       </div>
     </div>
-    <div class="user-posts">
-      <% @user.posts.each do |post| %>
-        <div class="post-box">
-          <div class="post-header">
-            <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
-            <div class="delete-post-btn">
-              <% if can? :manage, post %>
-                <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
-                  <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you want to delete this post?' } do %>
-                    Delete
-                  <% end %>
+  </div>
+  <div class="user-posts">
+    <% @user.posts.each do |post| %>
+      <div class="post-box">
+        <div class="post-header">
+          <a class="post-title label-link" href="<%= user_post_path(@user, post) %> "><%= post.title %></a>
+          <div class="delete-post-btn">
+            <% if can? :manage, post %>
+              <%= form_with(url: delete_post_post_path(post), method: :delete, remote: true) do |form| %>
+                <%= form.button type: :submit, class: 'btn btn-delete', data: { confirm: 'Are you sure you want to delete this post?' } do %>
+                  Delete
                 <% end %>
               <% end %>
-            </div>
-          </div>
-          <p><%= post.text %></p>
-          <div class='comments-likes-count'>
-            <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
-          </div>
-
-          <div class='comments-box'>
-            <div class= 'recent-comments-header'>
-              <h4 class='comments-list-title'>Recent Comments</h4>
-              <div class='see-all-comments-button'>
-                <a class= 'btn btn-primary' href="<%= user_post_path(@user, post) %>">Details</a>
-              </div>
-            </div>
-            <ul class="comments-list">
-              <% post.recent_comments.each do |comment| %>
-                <li class="comment-item">
-                  <div class="comment-info">
-                    <p><span class='comment-author-name'><%= comment.author.name %></span>: <%= comment.text %></p>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
+            <% end %>
           </div>
         </div>
-      <% end %>
-      <div class = "pagination-button">
-        <a class = "btn btn-primary"  href="<%= user_path(@user) %>">Back</a>
+        <p><%= post.text %></p>
+        <div class='comments-likes-count'>
+          <p>Comments: <%= post.comments_counter %>  |  Likes: <%= post.likes_counter %></p>
+        </div>
+
+        <div class='comments-box'>
+          <div class= 'recent-comments-header'>
+            <h4 class='comments-list-title'>Recent Comments</h4>
+            <div class='see-all-comments-button'>
+              <a class= 'btn btn-primary' href="<%= user_post_path(@user, post) %>">Details</a>
+            </div>
+          </div>
+          <ul class="comments-list">
+            <% post.recent_comments.each do |comment| %>
+              <li class="comment-item">
+                <div class="comment-info">
+                  <p><span class='comment-author-name'><%= comment.author.name %></span>: <%= comment.text %></p>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>    
-  </body>
-</html>
+    <% end %>
+    <div class = "pagination-button">
+      <a class = "btn btn-primary"  href="<%= user_path(@user) %>">Back</a>
+    </div>
+  </div>    
+</div>

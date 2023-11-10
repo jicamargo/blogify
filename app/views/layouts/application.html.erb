@@ -15,16 +15,16 @@
     <%= render 'home/header' %>
 
     <!-- notifications bar -->
-    <div class='container'>
+    <div class='container d-flex justify-content-center w-auto z-4 p-0'>
       <% flash.each do |type, message| %>
-        <div class="alert alert-<%= type %>">
+        <div class="alert alert-<%= type %> position-fixed rounded-pill">
           <%= message %>
         </div>
       <% end %>
     </div>
 
     <!-- Main content -->
-    <div class='d-flex container-fluid'>
+    <div id='main-container' class='d-flex container-fluid p-0'>
       <%= render 'home/sidebar' %>
       <%= yield %>
     </div>
