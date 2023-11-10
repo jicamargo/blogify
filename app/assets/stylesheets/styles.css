@@ -74,17 +74,37 @@
 body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
+  height: 100vh;
+  display: block;
+  align-items: center;
 }
 
 /* Define styles for the user list */
+.users-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .user-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .user-link {
   text-decoration: none;
   color: var(--primary-color);
+}
+
+.user-list > * {
+  flex: 1;
+  min-width: 300px;
+  max-width: 300px;
 }
 
 /* Define styles for each user item */
@@ -311,13 +331,15 @@ body {
 .log-in-section {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin: 5px;
+  align-items: center;
+  max-width: 500px;
+  margin: auto;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+  background: #d9dadb;
 }
 
 .field {

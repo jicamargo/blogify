@@ -1,0 +1,90 @@
+<button id='SidebarToggleButton' class="btn btn-primary position-absolute z-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+   Show options 
+</button>
+
+<div 
+  class="offcanvas offcanvas-start position-relative z-0 bg-dark-subtle mt-5 <%= session[:sidebar_state] == "hide" ? "" : "show" %>"
+  data-bs-scroll="true" 
+  data-bs-backdrop="false"
+  tabindex="-1" 
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Search options</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-group list-group-numbered">
+
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+      <%= link_to root_path, class: "list-group-item d-flex justify-content-between align-items-start" do %>
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Recent posts</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      <% end %>
+
+    </ul>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('turbo:load', function () {
+    var toggleButton = document.getElementById('SidebarToggleButton');
+    var offcanvas = document.getElementById('offcanvasScrolling');
+
+    // gets the sidebar state from the local session storage
+    var sidebarState = sessionStorage.getItem('sidebarState') || 'show';
+
+    // updates offcanvas class based on the sidebar state
+    offcanvas.classList.toggle('show', sidebarState === 'show');
+
+    toggleButton.addEventListener('click', function () {
+      var hasShowClass = offcanvas.classList.contains('show');
+  
+      // change State and save it to the local session storage
+      sidebarState = hasShowClass ? 'hide' : 'show';
+      sessionStorage.setItem('sidebarState', sidebarState);
+
+      if (sidebarState==='show') {
+        toggleButton.textContent = 'Hide options';
+        offcanvas.classList.toggle('position-relative', true);
+      } else {
+        toggleButton.textContent = '>>';
+        offcanvas.top = '200px';
+        offcanvas.classList.toggle('position-relative', false);
+      }
+    });
+
+    // set the toggleButton to the same size and position of offcanvas-header, even if the window is resized
+    function UpdateButtonWidth() {
+      var offcanvasHeader = offcanvas.querySelector('.offcanvas-header');
+      toggleButton.style.width = offcanvasHeader.offsetWidth + 'px';
+      toggleButton.style.height = offcanvasHeader.offsetHeight + 'px';
+    }
+
+    UpdateButtonWidth();
+
+    window.addEventListener('resize', function () {
+      UpdateButtonWidth();
+    });
+   
+  });
+</script>
