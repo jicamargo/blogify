@@ -1,8 +1,8 @@
 <button id='SidebarToggleButton' class="btn btn-primary position-absolute z-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-   Hide < 
+   Show options 
 </button>
 
-<div class="offcanvas offcanvas-start show position-relative z-2 bg-dark-subtle vh-100" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="offcanvas offcanvas-start position-relative z-2 bg-dark-subtle vh-100" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Search options</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -40,12 +40,12 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('turbo:load', function () {
     var toggleButton = document.getElementById('SidebarToggleButton');
     var offcanvas = document.getElementById('offcanvasScrolling');
 
     // Initialize the button text when page loads
-    toggleButton.textContent = 'Search Options <<';
+    toggleButton.textContent = 'Show options';
   
     // set the toggleButton to the same size and position of offcanvas-header, even if the window is resized
     function UpdateButtonWidth() {
@@ -64,9 +64,9 @@
       var hasShowClass = offcanvas.classList.contains('show');
 
       if (hasShowClass) {
-        toggleButton.textContent = 'Search Options';
+        toggleButton.textContent = 'Show options';
       } else {
-        toggleButton.textContent = 'Search Options <<';
+        toggleButton.textContent = 'Hide options';
       }
     });
   });
