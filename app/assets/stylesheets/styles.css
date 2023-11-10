@@ -93,7 +93,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .user-link {
@@ -103,8 +103,8 @@ body {
 
 .user-list > * {
   flex: 1;
-  min-width: 300px; 
-  max-width: 300px; 
+  min-width: 300px;
+  max-width: 300px;
 }
 
 /* Define styles for each user item */
