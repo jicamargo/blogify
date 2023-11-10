@@ -2,7 +2,14 @@
    Show options 
 </button>
 
-<div class="offcanvas offcanvas-start position-relative z-2 bg-dark-subtle vh-100" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div 
+  class="offcanvas offcanvas-start position-relative z-0 bg-dark-subtle mt-5 <%= session[:sidebar_state] == "hide" ? "" : "show" %>"
+  data-bs-scroll="true" 
+  data-bs-backdrop="false"
+  tabindex="-1" 
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
+>
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Search options</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -34,7 +41,6 @@
         <span class="badge bg-primary rounded-pill">14</span>
       <% end %>
 
-      
     </ul>
   </div>
 </div>
@@ -44,9 +50,29 @@
     var toggleButton = document.getElementById('SidebarToggleButton');
     var offcanvas = document.getElementById('offcanvasScrolling');
 
-    // Initialize the button text when page loads
-    toggleButton.textContent = 'Show options';
+    // gets the sidebar state from the local session storage
+    var sidebarState = sessionStorage.getItem('sidebarState') || 'show';
+
+    // updates offcanvas class based on the sidebar state
+    offcanvas.classList.toggle('show', sidebarState === 'show');
+
+    toggleButton.addEventListener('click', function () {
+      var hasShowClass = offcanvas.classList.contains('show');
   
+      // change State and save it to the local session storage
+      sidebarState = hasShowClass ? 'hide' : 'show';
+      sessionStorage.setItem('sidebarState', sidebarState);
+
+      if (sidebarState==='show') {
+        toggleButton.textContent = 'Hide options';
+        offcanvas.classList.toggle('position-relative', true);
+      } else {
+        toggleButton.textContent = '>>';
+        offcanvas.top = '200px';
+        offcanvas.classList.toggle('position-relative', false);
+      }
+    });
+
     // set the toggleButton to the same size and position of offcanvas-header, even if the window is resized
     function UpdateButtonWidth() {
       var offcanvasHeader = offcanvas.querySelector('.offcanvas-header');
@@ -60,14 +86,5 @@
       UpdateButtonWidth();
     });
    
-    toggleButton.addEventListener('click', function () {
-      var hasShowClass = offcanvas.classList.contains('show');
-
-      if (hasShowClass) {
-        toggleButton.textContent = 'Show options';
-      } else {
-        toggleButton.textContent = 'Hide options';
-      }
-    });
   });
 </script>
